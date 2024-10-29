@@ -1,0 +1,1 @@
+project idea: A hotel reservation system that let the users browse rooms, make bookings, and manage reservations for a virtual hotel.
