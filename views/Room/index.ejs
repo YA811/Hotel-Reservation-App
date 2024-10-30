@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title>all rooms</title>
+</head>
+<body>
+     <a href="/rooms/new">Add a new room</a>
+    <div class="room-listing"></div>
+    <h1>All Rooms</h1>
+    <ul class="room-list">
+<% rooms.forEach((room)=>{%>
+  <li class="room-item">   <h2><%= room.type %></h2>
+<h5> <a href="/rooms/<%= room._id %>">view more details</a></h5> </li>
+<% })  %>  
+    </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title>Add a new room!</title>
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+    <div class="new-container">
+        <div class="new-form-container">
+    <h1>Add a new room!</h1>
+    <form action="/rooms" method="POST">
+        <label for="type">type of the room:</label>
+        <input type="text" name="type" id="type" />
+        <label for="description">description:</label>
+        <input type="text" name="description" id="description" />
+        <label for="price">Price:</label>
+        <input type="number" name="price" id="price" min="0" />
+        <label for="availability">Availability:</label>
+        <input type="checkbox" name="availability" id="availability" />
+        <button type="submit">Add Room</button>
+      </form>
+</body>
+</html>

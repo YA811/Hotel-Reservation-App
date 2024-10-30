@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title>Room details</title>
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h2>Room's details</h2>
+    <ul class="room-list">
+        <li class="room-item"> Room's type: <%= room.type %></li>
+        <li class="room-item">Room's description: <%= room.description %></li>
+            <li class="room-item"> Room's price: <%= room.price %></li> 
+                <li class="room-item"> Room's Availability: <%= room.availability %></li>
+
+    <form action="/rooms/<%= room.id %>?_method=DELETE" method="POST">
+        <button type="submit"  >Delete Room</button>
+    </form>
+<br>
+<div class="links">
+   <a href="/rooms/<%= room._id %>/edit">Edit the room</a> 
+</div>
+</body>
+</html>

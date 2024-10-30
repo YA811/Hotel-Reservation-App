@@ -4,25 +4,30 @@ const morgan = require('morgan');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const addUserToViews = require('./middleware/addUserToViews');
+const path = require('path');
+
 require('dotenv').config();
 require('./config/database');
 
+
 // Controllers
 const authController = require('./controllers/auth');
+const roomController = require('./controllers/room');
 const isSignedIn = require('./middleware/isSignedIn');
 
 const app = express();
 // Set the port from environment variable or default to 3000
-const port = process.env.PORT ? process.env.PORT : '3000';
+const port = process.env.PORT ? process.env.PORT : '4000';
 
 // MIDDLEWARE
-
+app.use(express.static(path.join(__dirname, 'public')));
 // Middleware to parse URL-encoded data from forms
 app.use(express.urlencoded({ extended: false }));
 // Middleware for using HTTP verbs such as PUT or DELETE
 app.use(methodOverride('_method'));
 // Morgan for logging HTTP requests
 app.use(morgan('dev'));
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -42,6 +47,7 @@ app.get('/', async (req, res) => {
 });
 
 app.use('/auth', authController);
+app.use('/rooms', roomController);
 
 // Protected Routes
 app.use(isSignedIn);

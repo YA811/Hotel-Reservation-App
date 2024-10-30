@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title>Edit Room</title>
+</head>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+    <div class="new-container">
+        <div class="new-form-container">
+    <h1>Edit Room</h1>
+    <form action="/rooms/<%= room._id %>?_method=PUT" method="POST">
+        <label for="type">type of the room:</label>
+        <input type="text" name="type" id="type" value="<%= room.type %>"/>
+        <label for="description">description:</label>
+        <input type="text" name="description" id="description" value="<%= room.description %>"/>
+        <label for="price">Price:</label>
+        <input type="number" name="price" id="price" min="0" value="<%= room.price %>"/>
+        <label for="availability">Availability:</label>
+        <input type="checkbox" name="availability" id="availability" <% room.availability ? 'on' : 'off' %> checked/>
+        <button type="submit">Edit Room</button>
+      </form>
+
+</body>
+</html>
