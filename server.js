@@ -43,14 +43,16 @@ app.use(addUserToViews);
 
 // Public Routes
 app.get('/', async (req, res) => {
-  res.render('index.ejs');
+  res.render('index.ejs', {
+    user: req.session.user,
+  });
 });
 
 app.use('/auth', authController);
 app.use('/rooms', roomController);
 
 // Protected Routes
-app.use(isSignedIn);
+app.use('/rooms',isSignedIn, roomController);
 
 app.get('/protected', async (req, res) => {
   if (req.session.user) {
