@@ -6,8 +6,10 @@ const Room = require('../models/room');
 //view all
 router.get('/', async (req,res)=>{
     try{
-        const rooms = await Room.find({});
+        if (req.session.user){
+             const rooms = await Room.find({});
         res.render('room/index.ejs', {rooms});
+        }
     }
     catch(error){
         console.error(error);
@@ -17,7 +19,8 @@ router.get('/', async (req,res)=>{
 
 //add
 router.get('/new', (req, res)=>{
-    res.render('Room/new.ejs')
+    if (req.session.user){
+    res.render('Room/new.ejs')}
 });
 
 //create
@@ -44,15 +47,16 @@ router.post('/', async (req, res) => {
 
 //show
 router.get('/:id', async (req, res) => {
+    if (req.session.user){
     const room = await Room.findById(req.params.id);
-    res.render('room/show.ejs', {room});
+    res.render('room/show.ejs', {room});}
 });
 
 //edit 
 router.get('/:id/edit', async (req, res) => {
+    if (req.session.user){
     const room = await Room.findById(req.params.id);
-
-    res.render('room/edit.ejs', {room});
+    res.render('room/edit.ejs', {room});}
 });
 
 //update 

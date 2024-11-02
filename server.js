@@ -41,6 +41,14 @@ app.use(
 
 app.use(addUserToViews);
 
+
+app.use('/auth', authController);
+app.use('/rooms', roomController);
+
+// Protected Routes
+app.use('/rooms',isSignedIn, roomController);
+
+
 // Public Routes
 app.get('/', async (req, res) => {
   res.render('index.ejs', {
@@ -48,11 +56,6 @@ app.get('/', async (req, res) => {
   });
 });
 
-app.use('/auth', authController);
-app.use('/rooms', roomController);
-
-// Protected Routes
-app.use('/rooms',isSignedIn, roomController);
 
 app.get('/protected', async (req, res) => {
   if (req.session.user) {
