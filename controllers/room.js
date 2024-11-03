@@ -20,7 +20,7 @@ router.get('/', async (req,res)=>{
 //add
 router.get('/new', (req, res)=>{
     if (req.session.user){
-    res.render('Room/new.ejs')}
+    res.render('room/new.ejs')}
 });
 
 //create

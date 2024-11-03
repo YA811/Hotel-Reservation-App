@@ -43,7 +43,6 @@ app.use(addUserToViews);
 
 
 app.use('/auth', authController);
-app.use('/rooms', roomController);
 
 // Protected Routes
 app.use('/rooms',isSignedIn, roomController);
